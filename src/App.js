@@ -12,6 +12,8 @@ import {
 import "../src/App.css";
 
 const App = () => {
+  console.log(process.env);
+
   return (
     <div className="app">
       <div className="navbar">
