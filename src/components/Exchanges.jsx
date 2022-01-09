@@ -1,13 +1,18 @@
-import { Col, Collapse, Row, Typography } from "antd";
-import HTMLReactParser from "html-react-parser";
-import millify from "millify";
+import {
+  Col,
+  // Collapse,
+  // Typography
+  Row,
+} from "antd";
+// import HTMLReactParser from "html-react-parser";
+// import millify from "millify";
 
 import { Loader } from ".";
-import Avatar from "antd/lib/avatar/avatar";
+// import Avatar from "antd/lib/avatar/avatar";
 import { useGetExchangesQuery } from "../services/cryptoApi";
 
-const { Text } = Typography;
-const { Panel } = Collapse;
+// const { Text } = Typography;
+// const { Panel } = Collapse;
 
 const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
@@ -25,30 +30,26 @@ const Exchanges = () => {
         <Col span={6}>Change</Col>
       </Row>
       <Row>
-        {/* {exchangesList.map((el) => (
+        {/* {exchangesList.map((exchange) => (
           <Col span={24}>
             <Collapse>
               <Panel
-                key={el.uuid}
+                key={exchange.uuid}
                 showArrow={false}
-                header={
-                  <Row key={el.uuid}>
+                header={(
+                  <Row key={exchange.uuid}>
                     <Col span={6}>
-                      <Text>
-                        <strong>{el.rank}. </strong>
-                      </Text>
-                      <Avatar className="exchange-image" src={el.iconUrl} />
-                      <Text>
-                        <strong>{el.name}</strong>
-                      </Text>
+                      <Text><strong>{exchange.rank}.</strong></Text>
+                      <Avatar className="exchange-image" src={exchange.iconUrl} />
+                      <Text><strong>{exchange.name}</strong></Text>
                     </Col>
-                    <Col span={6}>${millify(el.volume)}</Col>
-                    <Col span={6}>${millify(el.numberOfMarkets)}</Col>
-                    <Col span={6}>${millify(el.marketShare)}%</Col>
+                    <Col span={6}>${millify(exchange.volume)}</Col>
+                    <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
+                    <Col span={6}>{millify(exchange.marketShare)}%</Col>
                   </Row>
-                }
+                  )}
               >
-                {HTMLReactParser(el.description || "")}
+                {HTMLReactParser(exchange.description || '')}
               </Panel>
             </Collapse>
           </Col>

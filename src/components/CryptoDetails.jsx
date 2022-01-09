@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
-import { Col, Row, Typography, Select } from "antd";
+import { Col, Row, Typography, Select, Avatar } from "antd";
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -120,6 +120,10 @@ const CryptoDetails = () => {
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
+          <Avatar
+            style={{ maxWidth: "100px", maxHeight: "75px" }}
+            src={cryptoDetails.iconUrl}
+          />
           {cryptoDetails.name} ({cryptoDetails.symbol}) Price:
         </Title>
         <p>
