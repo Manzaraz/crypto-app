@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+[![N|Solid](https://i.ibb.co/X58M6Vm/Manzi-Banner2x.png)](https://manzaraz.github.io)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Manziflix
 
-## Available Scripts
+## Una version de Netflix... pero a mi manera
 
-In the project directory, you can run:
+[![N|Solid](https://i.ibb.co/3Y7kR0G/Captura-de-Pantalla-2022-01-05-a-la-s-14-42-31.png)](https://manziflix.netlify.app)
 
-### `yarn start`
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://manzaraz.github.io)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Manziflix es una recreación del conocido Netflix utilizando la API de The Movie DB para obtener la data que componen la informacion necesaria para cada componente y además esta conectada al servicio de Paypal para realizar la suscripción.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Manziflix está maquetada con diseño responsivo, adaptado para celulares y dispositivos de escritorio, y la sesión del usuario se guarda en el localStorage. Para la realización de este proyecto utilicé como lenguaje principal JavaScript, utilizando la librería de ReactJS para su conformación, utilizando para el maquetado css para los estilos de base y MaterialUI con Styled-Components, para darle estilos a los componentes.
 
-### `yarn test`
+### Nota al visitante, no desarrollador
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Algunas de las features, como la del chekout no estan funcionando de manera correcta en el deploy realizado en Netlify; por ello es recomendable:
 
-### `yarn build`
+- Clonar el repositorio con el comando `git clone https://github.com/Manzaraz/manziflix.git`
+- Luego instalar las dependencias del proyecto ejecutando el comando `npm i`
+- Por último, levantar el servidor de desarrollo con la siguiente línea `npm start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features y Descripción del proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Inicializcion del proyecto:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`npx create-react-app manziflix --template redux`
 
-### `yarn eject`
+### Proceso de limpieza.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Importar las librerias
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+@mui/material styled-components firebase, react-router-dom, react-uuid, axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### App.js - layout inicial
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    - Creamos las rutas mediante react-router-dom
+    - Renderizamos Login o el resto de la app condicionada a la existencia del usuario
 
-## Learn More
+### Estilos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    - Usamos el Hook de MU, useStyles, para crear una infraestructura que nos permita asignar estilos a cada uno de los componentes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Crear las carpetas de los componentes: componentes & pages
 
-### Code Splitting
+    - Creamos la infraestructura báscia de los componentes de /pages: Home, Login, Paypal, Profile, SignUp.
+    - Creamos la infraestructura báscia de los componentes de /components: Banner, Header, Plans, Row.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Estilos en los componentes de /pages
 
-### Analyzing the Bundle Size
+    - Patrón para añadir la infraestrucutra de estilos a todos los components de /pages
+    - Patrón para añadir la infraestrucutra de estilos a todos los components de /components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Trabajando con el Header
 
-### Making a Progressive Web App
+    - Importamos el Logo
+    - Añadimos al AppBar una clase transparente dinámica mediante el estado de la variable Show (la cual depende del scroll vertical)
+    - Añadimos las rutas a Logo y al Avatar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Trabajando con el Banner
 
-### Advanced Configuration
+    - Se importó una imagen como backgroundImage.
+    - En React, tenemos que acompañar las backgroundImages con estilos como object-fit, bgSize y bgPosition.
+    - Posicioné el titulo de la película, con botones y descripción.
+    - A la descripción, como viene de api tenemos que truncarla  para asegurar que quepa en el espacio asigando con truncate.
+    - Añadí un div vacio para oscurecer la imagen hasata fusionarla con el resto de la UI, que es oscuro.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Trabajamos con el Login
 
-### Deployment
+    - Se creó un botón con Styled-Components "FlixBtn", el cual está customizado para variar longitud, color y otros estilos pasándole props...
+    - Styled-Components para variar los estilos del Input o del Botón, pero par su pocionamiento, le damos una clase normal.
+    - Se creó un Input personalizado con Styled-Componets "FlixInput", el cual ya era un componente de Mui de InputBase.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Trabajando con el pages/Profile
 
-### `yarn build` fails to minify
+    - Trabajamos con la distribución
+    - <Plans>Texto</Plans>
+        `const Plans = ({children}) => return(...)`
+    - Paso props {color, size, radius} condicionales al <FlixBtn>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Trabajando en el pages/SignUp
+
+    - Renderizado condicional con signIn, de ser falsa desplegamos el formulario
+
+### Proceso de SignIn/SignUp
+
+    • Habilité una cuenta de Firebase.
+    • Inicializado el objeto auth()
+    • signUp email y password
+    • signIn email y password
+
+### Redux
+
+    • Habilitamos el slice userSlice para manejar el usuario en el componente que lo solicite.
+
+### Persistencia
+
+    - Se añadió un eventListener en App, el cual trae el objeto auth de firebase, el que escuchará cada vez que cambia entonces vuelve a inyectar el usuario en la capa de datos de userSlice de redux
+    - De esta manera recordamos a la app que ya estamos adentro aunque refresquemos la página
+
+### Requests
+
+    - Con axios nos conectamos a los endpoints para conectarnos al API de TMDB.
+    - Creamos Requests para construir todos los endpoints para obtener la data con su API_KEY
+    - Construir el componente Row
+
+### Se hizo todos los requests a la API de TheMovieDB
+
+    - con useEffect, se hicieron llamadas asíncronas mediante una funcion getMovies, la cual me devuelve un json.results, que es un array con todas las películas.
+
+### Implementacion de la pasarela de pago con Paypall
+
+    - al componente paypal lo llamamos cuando clickeamos en uno de los botones de los planes de subscripcion. Estos botones nos redirigen a la ruta route/checkout
+    - En checkout vemos el componente Paypal, que contiene el código de React necesario para implementar la integracion de la App de react con la de Paypal.
+
+## Visiten mis Redes Sociales. Gracias por visitar.
+
+| Plugin    | README                                  |
+| --------- | --------------------------------------- |
+| Portfolio | [https://manzaraz.github.io]            |
+| GitHub    | [https://github.com/Manzaraz]           |
+| LinkedIn  | [https://www.linkedin.com/in/manzaraz]  |
+| Twitter   | [https://twitter.com/MagnusManz]        |
+| Instagram | [https://www.instagram.com/magnusmanz/] |

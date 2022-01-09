@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { Layout, Typography, Space } from "antd";
 
 import {
@@ -28,6 +28,7 @@ const App = () => {
               <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
               <Route path="/crypto/:coinId" element={<CryptoDetails />} />
               <Route path="/news" element={<News />} />
+              <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </div>
         </Layout>
