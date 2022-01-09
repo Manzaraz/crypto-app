@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import HTMLReactParser from "html-react-parser";
-import millify from "millify";
 import { useParams } from "react-router-dom";
+import millify from "millify";
 import { Col, Row, Typography, Select } from "antd";
 import {
   MoneyCollectOutlined,
@@ -9,21 +9,21 @@ import {
   FundOutlined,
   ExclamationCircleOutlined,
   StopOutlined,
-  NumberOutlined,
-  ThunderboltOutlined,
   TrophyOutlined,
   CheckOutlined,
-} from "@ant-design/icons/lib/icons";
-import { Option } from "antd/lib/mentions";
+  NumberOutlined,
+  ThunderboltOutlined,
+} from "@ant-design/icons";
 
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
-import { LineChart, Loader } from ".";
+import Loader from "./Loader";
+import LineChart from "./LineChart";
 
 const { Title, Text } = Typography;
-const { Options } = Select;
+const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
